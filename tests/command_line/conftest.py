@@ -16,6 +16,11 @@ def pytest_addoption(parser):
 
 @pytest.fixture
 def url(request):
+    stand = request.config.getoption("--stand")
+    if stand == "staging":
+        return "http://stagin.com"
+    elif stand == "prod":
+        return "http://prod.com"
     return request.config.getoption("--url")
 
 
